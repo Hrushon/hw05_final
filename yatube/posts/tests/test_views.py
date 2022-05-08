@@ -62,14 +62,8 @@ class PostViewTests(TestCase):
             text='Тестовый пост',
             group=cls.group_1,
         )
-        cls.follow = Follow.objects.create(user=cls.user)
-        cls.follow.save()
-        cls.follow.author.add(cls.user_1)
-        cls.follow.save()
-        cls.follow_1 = Follow.objects.create(user=cls.user_2)
-        cls.follow_1.save()
-        cls.follow_1.author.add(cls.user)
-        cls.follow_1.save()
+        cls.follow = Follow.objects.create(user=cls.user, author=cls.user_1)
+        cls.follow_1 = Follow.objects.create(user=cls.user_2, author=cls.user)
 
     @classmethod
     def tearDownClass(cls):

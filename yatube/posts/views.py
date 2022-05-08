@@ -44,7 +44,11 @@ def profile(request, username):
     following = False
     if request.user.is_authenticated:
         user = User.objects.get(username=request.user)
-        if author != user and author in user.follower.author.all():
+        try:
+            follow_list = author.following.values_list('user').get()
+        except Follow.DoesNotExist:
+            follow_list = []
+        if user.id in follow_list:
             following = True
     context = {
         'author': author,
@@ -129,11 +133,12 @@ def add_comment(request, id):
 def follow_index(request):
     user = get_object_or_404(User, username=request.user)
     text = 'Посты любимых авторов'
-    try:
-        authors = user.follower.author.all()
-    except User.follower.RelatedObjectDoesNotExist:
-        text = 'У Вас еще нет любимых авторов.<br>Подпишитесь на кого-нибудь!'
-        authors = []
+    authors = user.follower.values_list('author')
+    if not authors:
+        text = (
+            'У Вас еще нет любимых авторов.<br>'
+            'Подпишитесь на кого-нибудь!'
+        )
     posts = Post.objects.filter(
         author__in=authors
     ).select_related('group').all()
@@ -148,10 +153,9 @@ def follow_index(request):
 def profile_follow(request, username):
     author = get_object_or_404(User, username=username)
     user = User.objects.get(username=request.user)
-    follow = Follow.objects.get_or_create(user=user)[0]
-    follow.save()
-    follow.author.add(author)
-    follow.save()
+    if user != author:
+        follow = Follow.objects.get_or_create(user=user, author=author)[0]
+        follow.save()
     return redirect('posts:profile', username=username)
 
 
@@ -159,7 +163,5 @@ def profile_follow(request, username):
 def profile_unfollow(request, username):
     author = get_object_or_404(User, username=username)
     user = User.objects.get(username=request.user)
-    follow = user.follower
-    follow.author.remove(author)
-    follow.save()
+    user.follower.all().filter(author=author).delete()
     return redirect('posts:profile', username=username)
