@@ -4,7 +4,7 @@
 {% block title %}
   Пост {{post.text|ljust:"30"}}
 {% endblock %}
-{% block content %} 
+{% block content %}
   <div class="row">
     <aside class="col-12 col-md-3">
       <ul class="list-group list-group-flush">
@@ -17,13 +17,13 @@
             <a href="{% url 'posts:group_list' post.group.slug %}"
             >все записи группы</a>
           </li>
-        {% endif %}  
+        {% endif %}
         <li class="list-group-item">
           Автор: {{ post.author.get_full_name }}
         </li>
-        <li 
-          class="list-group-item d-flex 
-          justify-content-between align-items-center"
+        <li
+          class="list-group-item d-flex
+            justify-content-between align-items-center"
         >Всего постов автора: <span>{{ count }}</span></li>
         <li class="list-group-item">
           <a href="{% url 'posts:profile' post.author %}"
@@ -39,7 +39,7 @@
         {{ post.text }}
       </p>
       {% if request.user == post.author %}
-        <a class="btn btn-primary" 
+        <a class="btn btn-primary"
           href="{% url 'posts:post_edit' post.id %}"
         >редактировать запись</a>
       {% endif %}
@@ -48,7 +48,7 @@
           <h5 class="card-header">Добавить комментарий:</h5>
           <div class="card-body">
             <form method="post" action="{% url 'posts:add_comment' post.id %}">
-              {% csrf_token %}      
+              {% csrf_token %}
               <div class="form-group mb-2">
                 {{ form.text|addclass:"form-control" }}
               </div>
@@ -65,12 +65,12 @@
                 {{ comment.author.get_full_name }}
               </a>
             </h5>
-              <p>
-               {{ comment.text }}
-              </p>
-            </div>
+            <p>
+              {{ comment.text }}
+            </p>
           </div>
+        </div>
       {% endfor %}
     </article>
-  </div> 
+  </div>
 {% endblock %}

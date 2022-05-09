@@ -7,8 +7,8 @@
   {% endif %}
 {% endblock %}
 {% block content %}
-  {% load user_filters %}  
-  <div class="container py-5">  
+  {% load user_filters %}
+  <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-8 p-5">
         <div class="card">
@@ -17,26 +17,26 @@
               Редактировать пост
             {% else %}
               Новый пост
-            {% endif %}                       
+            {% endif %}
           </div>
-          <div class="card-body"> 
-            {% include 'includes/form_errors.html' %}                    
-            <form method="post" enctype="multipart/form-data" 
-                {% if action_url %}
-                  action="{% url action_url %}"
-                {% endif %}
+          <div class="card-body">
+            {% include 'includes/form_errors.html' %}
+            <form method="post" enctype="multipart/form-data"
+              {% if action_url %}
+                action="{% url action_url %}"
+              {% endif %}
             >
-            {% csrf_token %}
-            {% include 'includes/field_form.html' %}
-            <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary">
-                {% if is_edit %}
-                  Сохранить
-                {% else %}
-                  Добавить
-                {% endif %}
-              </button>
-            </div>
+              {% csrf_token %}
+              {% include 'includes/field_form.html' %}
+              <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                  {% if is_edit %}
+                    Сохранить
+                  {% else %}
+                    Добавить
+                  {% endif %}
+                </button>
+              </div>
             </form>
           </div>
         </div>
