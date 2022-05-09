@@ -41,15 +41,8 @@ def profile(request, username):
     posts = author.posts.select_related('group').all()
     count_article = posts.count()
     page_obj = paginator(posts, request)
-    following = False
-    if request.user.is_authenticated:
-        user = User.objects.get(username=request.user)
-        try:
-            follow_list = author.following.values_list('user').get()
-        except Follow.DoesNotExist:
-            follow_list = []
-        if user.id in follow_list:
-            following = True
+    following = (request.user.is_authenticated
+                 and author.following.filter(user=request.user))
     context = {
         'author': author,
         'count': count_article,
@@ -131,9 +124,8 @@ def add_comment(request, id):
 
 @login_required
 def follow_index(request):
-    user = get_object_or_404(User, username=request.user)
     text = 'Посты любимых авторов'
-    authors = user.follower.values_list('author')
+    authors = request.user.follower.values_list('author')
     if not authors:
         text = (
             'У Вас еще нет любимых авторов.<br>'
@@ -152,9 +144,10 @@ def follow_index(request):
 @login_required
 def profile_follow(request, username):
     author = get_object_or_404(User, username=username)
-    user = User.objects.get(username=request.user)
-    if user != author:
-        follow = Follow.objects.get_or_create(user=user, author=author)[0]
+    if request.user != author:
+        follow = Follow.objects.get_or_create(
+            user=request.user, author=author
+        )[0]
         follow.save()
     return redirect('posts:profile', username=username)
 
@@ -162,6 +155,5 @@ def profile_follow(request, username):
 @login_required
 def profile_unfollow(request, username):
     author = get_object_or_404(User, username=username)
-    user = User.objects.get(username=request.user)
-    user.follower.all().filter(author=author).delete()
+    request.user.follower.all().filter(author=author).delete()
     return redirect('posts:profile', username=username)
