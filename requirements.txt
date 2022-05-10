@@ -7,7 +7,6 @@ charset-normalizer==2.0.12
 colorama==0.4.4
 Django==2.2.19
 django-debug-toolbar==3.2.4
-djhtml==1.5.0
 Faker==12.0.1
 idna==3.3
 iniconfig==1.1.1
