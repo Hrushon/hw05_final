@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ud0n_xffg1amf$j5*=^^o)dbbe))v+fcsa&96z04)f)xo4b3b+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'www.steblyan.pythonanywhere.com',

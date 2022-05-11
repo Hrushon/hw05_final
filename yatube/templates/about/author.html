@@ -2,18 +2,18 @@
 {% load static %}
 {% block title %}Об авторе проекта{% endblock %}
 {% block content %}
-  <header style="height: 75px; background: #F5F5DC" align="center">
+  <div class="article" style="background: #F5F5DC" align="center">
     <h1><font size="15" color="black" face="Verdana"><b>Немного обо мне</b></font></h1>
-  </header>
+  </div>
   <div class="row">
-    <aside class="col-12 col-md-3" style="background: #F5F5DC" align="center">
+    <aside class="col-12 col-md-3" align="center">
       <h3><br></h3>
-      <img src="{% static 'img/author/Vasya.png' %}" width="236" height="354" class="display: block margin: 0 auto">
+      <img src="{% static 'img/author/Vasya.png' %}" width="236" height="354" class="display: block py-6">
       <h4><font size="3" color="black" face="Verdana">#Это я как-будто на природе</font></h4>
     </aside>
-    <article class="col-12 col-md-6" style="background: #F5F5DC">
+    <article class="col-12 col-md-6">
       <p>
-        <h2><font size="12" color="#00BFFF" face="Verdana"><i><b>Василий<br>Васильевич<br>Васечкин</b></i></font></h2>
+        <h2 align="center"><font size="12" color="#00BFFF" face="Verdana"><i><b>Василий<br>Васильевич<br>Васечкин</b></i></font></h2>
         <font size="4" color="black" face="Verdana">
           <br>
           Я первый в мире кот-программист.<br>
@@ -21,13 +21,15 @@
           Люблю есть желешки Purina и смотреть в окно.<br>
           Утром сплю, а ночью просыпаюсь...<br>
           <br>
-          Кошечки пишите: whiskas@meow.ru
+          <p align="center">
+            Кошечки пишите: whiskas@meow.ru
+          </p>
         </font>
       </p>
     </article>
-    <aside class="col-12 col-md-3" style="background: #F5F5DC" align="center">
+    <aside class="col-12 col-md-3" align="center">
       <h3><br></h3>
-      <img src="{% static 'img/author/Vasya2.png' %}" width="265" height="353" class="display: block py-6">
+      <img src="{% static 'img/author/Vasya2.png' %}" width="236" height="354" class="display: block py-6">
       <h4 ><font size="3" color="black" face="Verdana">#Это я с братом</font></h4>
     </aside>
   </div>
