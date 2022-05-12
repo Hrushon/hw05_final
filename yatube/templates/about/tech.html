@@ -1,39 +1,41 @@
 {% extends "base.html" %}
 {% block title %}Технологии{% endblock %}
 {% block content %}
-<div class="article" style="background: #F5F5DC" align="center">
-  <h1><font size="15" color="black" face="Verdana"><b>Из чего это сделано</b></font></h1>
-</div>
-  <div class="row">
-    <aside class="col-12 col-md-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
+  <div class="article" style="background: #F5F5DC" align="center">
+    <h1><font size="15" color="black" face="Verdana"><b>Из чего это сделано</b></font></h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <aside class="col-12 col-md-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <font size="5" color="black" face="Verdana">
+              <br>
+              <b>Python - 3.8.9</b>
+              <br>
+            </font>
+          </li>
+          <li class="list-group-item">
+            <font size="5" color="black" face="Verdana">
+              <br>
+              <b>Django - 2.2.19</b>
+              <br>
+            </font>
+          </li>
+        </ul>
+      </aside>
+      <article class="col-12 col-md-9">
+        <p>
           <font size="5" color="black" face="Verdana">
             <br>
-            <b>Python - 3.8.9</b>
-            <br>
+            Логика сайта - чистый <i>Пайтон</i><br>
+            Выполнен полностью на фрэймворке <b>Джанго</b><br>
+            CSS - спасибо <font color="red" face="Verdana">Бустрапу</font><br>
+            У него же заимствован и <font color="Blue" face="Verdana">Джава</font> 
+            для адаптивной навигации<br>
           </font>
-        </li>
-        <li class="list-group-item">
-          <font size="5" color="black" face="Verdana">
-            <br>
-            <b>Django - 2.2.19</b>
-            <br>
-          </font>
-        </li>
-      </ul>
-    </aside>
-    <article class="col-12 col-md-9">
-      <p>
-        <font size="5" color="black" face="Verdana">
-          <br>
-          Логика сайта - чистый <i>Пайтон</i><br>
-          Выполнен полностью на фрэймворке <b>Джанго</b><br>
-          CSS - спасибо <font color="red" face="Verdana">Бустрапу</font><br>
-          У него же заимствован и <font color="Blue" face="Verdana">Джава</font> 
-          для адаптивной навигации<br>
-        </font>
-      </p>
-    </article>
+        </p>
+      </article>
+    </div>
   </div>
 {% endblock %}
