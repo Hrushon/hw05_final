@@ -135,7 +135,7 @@ class PostURLTests(TestCase):
         for i in (7, 8, 9):
             page = PAGES_LIST[i]
             with self.subTest(page=page):
-                response = self.guest_client.get(page)
+                response = self.authorized_client.get(page)
                 self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
     def test_urls_uses_correct_template(self):

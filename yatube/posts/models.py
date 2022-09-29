@@ -76,6 +76,8 @@ class Group(models.Model):
 
 
 class Comment(models.Model):
+    """Добавляет комментарий."""
+
     post = models.ForeignKey(
         Post,
         blank=True,
@@ -113,6 +115,8 @@ class Comment(models.Model):
 
 
 class Follow(models.Model):
+    """Создает подписку пользователя на автора."""
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
